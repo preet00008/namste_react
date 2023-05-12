@@ -160,3 +160,18 @@ footer {
 }
 
 /* Footer end */
+
+
+
+/* login btn start */
+
+.login_btn{
+  background-color: #000000;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+/* login btn end */

@@ -13,9 +13,9 @@ function filterSearch(searchText, restrauntData) {
 
 const Body = () => {
   const [restrauntData, setRestrauntData] = useState([]);
-  const [filterdRestrauntData, setfilterdRestrauntData] = useState([]);
+  const [filterdRestraunt, setFilterdRestraunt] = useState([]);
   const [searchText, setsearchText] = useState("");
-  console.log("render()");
+  console.log("render()", restrauntData);
 
   useEffect(() => {
     // Api call
@@ -31,13 +31,15 @@ const Body = () => {
       
     // optional chaning
     setRestrauntData(json?.data?.cards[2]?.data?.data?.cards);
-    setfilterdRestrauntData(json?.data?.cards[2]?.data?.data?.cards);
+    setFilterdRestraunt(json?.data?.cards[2]?.data?.data?.cards);
 
   }
 
 
   return (restrauntData.length === 0 ) ? <ShimmerUi/> : (
     <div className="app_body">
+
+      {/* search start */}
       <div className="searchbar">
         <div className="search_filed">
           <input
@@ -52,22 +54,25 @@ const Body = () => {
             className="search_button"
             onClick={() => {
               const data = filterSearch(searchText, restrauntData);
-              setRestrauntData(data);
+              setFilterdRestraunt(data);
             }}
           >
             Search
           </button>
         </div>
       </div>
-
+      {/* search ends */}
+      
+      {/*top res filter start*/}
       <div className="button_container">
         <div className="filter">
           <button className="filter_button"
             onClick={() => {
-              const Filter_list = setfilterdRestrauntData.filter(
+              const Filter_list = restrauntData.filter(
                 (res) => res.data.avgRating > 4
               );
-              setRestrauntData(Filter_list); 
+              console.log(Filter_list); 
+              setRestrauntData(Filter_list);
             }}>
             Top Rated Restaurants
           </button>
@@ -81,12 +86,15 @@ const Body = () => {
           <button className="help_button">Help </button>
         </div>
       </div>
+      {/*top res filter end*/}
 
+      {/* carts start */}
       <div className="cart-container">
-        {restrauntData.map((restaurant) => {
+        {filterdRestraunt.map((restaurant) => {
           return <Carts key={restaurant.data.id} resData={restaurant} />;
         })}
       </div>
+      {/* cart ends */}
     </div>
   );
 };
