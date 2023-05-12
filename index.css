@@ -1,4 +1,162 @@
-#heading{
-    color:chartreuse;
-    text-align: center;
+.header {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: -4px 5px 4px #d6d7d8;
 }
+
+.logo {
+  width: 37%;
+}
+
+.navbar {
+  display: flex;
+}
+
+.navbar > li {
+  list-style-type: none;
+  padding: 1.3rem;
+  font-size: 1.3rem;
+  color: rgb(87, 87, 87);
+}
+
+.navbar > li:hover {
+  color: black;
+  cursor: pointer;
+  font-weight: 550;
+}
+
+.cart-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3rem;
+}
+
+.searchbar {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.cart:hover {
+  border: 1px solid #d6d7d8;
+  box-shadow: -4px 5px 4px #d6d7d8;
+  cursor: pointer;
+}
+
+.cart {
+  padding: 1.5rem;
+  width: 14.5rem;
+}
+
+.cart_image {
+  width: 100%;
+}
+
+.cart_heading > p {
+  font-size: 13px;
+}
+
+.cart_items > p {
+  font-size: 13px;
+  padding: 0.3rem;
+}
+
+.cart_items {
+  display: flex;
+}
+
+/* Search bar start*/
+.search_filed {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 25px;
+  padding: 5px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+input[type="text"] {
+  border: none;
+  outline: none;
+  padding: 10px;
+  width: 70%;
+  font-size: 16px;
+  background-color: transparent;
+}
+
+.search_button {
+  background-color: #000000;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  /* transition: all 0.2s ease-in-out; */
+}
+
+.search_button:hover {
+  background-color: #f0f0f0;
+  color: #000000;
+}
+
+/* Search bar end*/
+
+/* filter button */
+
+.button_container{
+  display: flex;
+}
+
+.filter, .offers, .help{
+  margin-left: 2rem;
+  display: flex;
+}
+
+.filter_button, .offer_button, .help_button {
+  background-color: #000000;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  justify-content: center;
+}
+
+.filter_button:hover, .offer_button:hover, .help_button:hover {
+  background-color: #f0f0f0;
+  color: #000000;
+}
+
+/* Footer start */
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  padding: 50px;
+}
+
+footer {
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  animation: slide-up 0.5s ease-in-out;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Footer end */

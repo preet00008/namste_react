@@ -1,0 +1,75 @@
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+
+// **********This is how we using JSX**************
+
+// JSX = html like or XML like
+
+// const JsxHeading = < div className = "heading" > < h1 > hello i 'm jsx 😍</h1> </div>;
+// console.log(JsxHeading);
+
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// root.render(JsxHeading);
+
+// **********This is how we using core react**************
+
+// React.createElement = object = render   (this is a core react)
+
+// const heading = React.createElement("h2", {
+//     className: "heading"
+// }, "hi i'm react 😍");
+
+// console.log(heading);
+
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// root.render(heading);
+
+// ----------------------------------------------------------------------------------
+
+// this is using core react
+// React.createElement -> htmlElement(render)
+// const heading = React.createElement(
+//   "p",
+//   { class: "heading" },
+//   "hi!! core React"
+// );
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// Now we using Jsx
+// JSX ->  react.createElement -> htmlElement(render)  //parcel -> babel tranpiled this code for broewrs understands
+// const jsxElement = <h1 className="heading">Hi!! I'm JSX ⭐</h1>;
+
+// Components
+// two types of components -> Funcional Components & Class Components
+
+// Example of Functional Components
+// const title = () => <h2 className="first_div">Title of JSX</h2>;
+
+// const TestingComponent = () => (
+//   <React.Fragment>
+//       <h1>Hello</h1>
+//       <h1>bye</h1>
+//   </React.Fragment>
+// );
+
+// const JSXComponent = () => (
+//   <React.Fragment>
+//     <h1 className="heading">Functional Component</h1>
+//     {jsxElement}
+//     <h3>
+//       {890 + 6789}
+//     </h3>
+//     {/* <p>{console.log("hi", 5+8)}</p> */}
+//     {title()}
+//     <title />
+//     <title></title>
+//     <h3 className="heading">Functional Component</h3>
+//     <TestingComponent />
+//   </React.Fragment>
+// );
+
+// root.render(heading); //Core react
+// root.render(jsxElement); // JSX
+// root.render(<JSXComponent />); // functional Components
