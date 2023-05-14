@@ -105,16 +105,20 @@ input[type="text"] {
 
 /* filter button */
 
-.button_container{
+.button_container {
   display: flex;
 }
 
-.filter, .offers, .help{
+.filter,
+.offers,
+.help {
   margin-left: 2rem;
   display: flex;
 }
 
-.filter_button, .offer_button, .help_button {
+.filter_button,
+.offer_button,
+.help_button {
   background-color: #000000;
   border: none;
   color: #fff;
@@ -125,7 +129,9 @@ input[type="text"] {
   justify-content: center;
 }
 
-.filter_button:hover, .offer_button:hover, .help_button:hover {
+.filter_button:hover,
+.offer_button:hover,
+.help_button:hover {
   background-color: #f0f0f0;
   color: #000000;
 }
@@ -161,11 +167,9 @@ footer {
 
 /* Footer end */
 
-
-
 /* login btn start */
 
-.login_btn{
+.login_btn {
   background-color: #000000;
   border: none;
   color: #fff;
@@ -175,3 +179,19 @@ footer {
 }
 
 /* login btn end */
+
+/* Shimmer ui start */
+.shimmer{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 4rem;
+}
+
+.shimmer_ui {
+  width: 14.5rem;
+  height: 10rem;
+  margin: 1.2rem;
+  background-color: #ececec;
+}
+
+/* Shimmer ui end */

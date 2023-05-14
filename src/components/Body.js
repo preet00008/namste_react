@@ -4,6 +4,7 @@ import Carts from "./Carts";
 import ShimmerUi from "./ShimmerUi";
 
 function filterSearch(searchText, restrauntData) {
+
   const filterData = restrauntData.filter((res) =>
     res?.data?.name?.toLowerCase()?.includes(searchText?.toLowerCase())
   );
@@ -12,9 +13,11 @@ function filterSearch(searchText, restrauntData) {
 }
 
 const Body = () => {
+
   const [restrauntData, setRestrauntData] = useState([]);
   const [filterdRestraunt, setFilterdRestraunt] = useState([]);
   const [searchText, setsearchText] = useState("");
+
   console.log("render()", restrauntData);
 
   useEffect(() => {
@@ -35,11 +38,14 @@ const Body = () => {
 
   }
 
+  // not render component (Early return)
+  if(!restrauntData) return null;
 
   return (restrauntData.length === 0 ) ? <ShimmerUi/> : (
     <div className="app_body">
 
       {/* search start */}
+      
       <div className="searchbar">
         <div className="search_filed">
           <input
@@ -61,9 +67,11 @@ const Body = () => {
           </button>
         </div>
       </div>
+      
       {/* search ends */}
       
       {/*top res filter start*/}
+
       <div className="button_container">
         <div className="filter">
           <button className="filter_button"
@@ -86,6 +94,7 @@ const Body = () => {
           <button className="help_button">Help </button>
         </div>
       </div>
+      
       {/*top res filter end*/}
 
       {/* carts start */}

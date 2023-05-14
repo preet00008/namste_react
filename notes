@@ -73,3 +73,10 @@
 // root.render(heading); //Core react
 // root.render(jsxElement); // JSX
 // root.render(<JSXComponent />); // functional Components
+
+
+
+<!-- ROUTERS -->
+<!-- this is a function to create react router dom it will help us for routing.
+    import { createBrowserRouter, routerProvider } from "react-router-dom"; -->
+<!-- ROUTERS END -->
