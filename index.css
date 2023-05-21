@@ -1,8 +1,14 @@
+
 .header {
   border: 1px solid black;
   display: flex;
   justify-content: space-between;
   box-shadow: -4px 5px 4px #d6d7d8;
+}
+
+.link{
+  text-decoration: none;
+  color: inherit;
 }
 
 .logo {
@@ -77,7 +83,7 @@
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
-input[type="text"] {
+.search_bar {
   border: none;
   outline: none;
   padding: 10px;
@@ -111,14 +117,14 @@ input[type="text"] {
 
 .filter,
 .offers,
-.help {
+.help, .clearfilter {
   margin-left: 2rem;
   display: flex;
 }
 
 .filter_button,
 .offer_button,
-.help_button {
+.help_button, .clearfilter_button {
   background-color: #000000;
   border: none;
   color: #fff;
@@ -153,7 +159,6 @@ footer {
   color: #fff;
   text-align: center;
   padding: 20px 0;
-  animation: slide-up 0.5s ease-in-out;
 }
 
 @keyframes slide-up {
@@ -195,3 +200,158 @@ footer {
 }
 
 /* Shimmer ui end */
+
+
+
+/* contact us start */
+
+.container_contact, .container_about {
+  text-align: center;
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 50px;
+  animation: fade 0.6s ease;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 30px;
+  color: #333;
+  animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-group {
+  margin-bottom: 20px;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.contact_name {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  background-color: #f7f7f7;
+  transition: border-color 0.3s ease;
+  animation: slideIn 0.5s ease;
+}
+
+.contact_name:focus {
+  border-color: #545658;
+}
+
+textarea {
+  height: 150px;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #121213;
+  color: #fff;
+  font-size: 1em;
+  border: none;
+  border-radius: 25px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  animation: slideIn 0.5s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #545658;
+}
+
+/* contact us end */
+
+
+/* about us start */
+
+.about_heading{
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+
+.about_para{
+  font-size: 1.2em;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.team-members {
+  display: flex;
+  justify-content: center;
+}
+
+.member {
+  width: 200px;
+  margin: 0 20px;
+  text-align: center;
+}
+
+.member img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.member h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.member p {
+  color: #888;
+  font-size: 0.9em;
+}
+
+/* about us end */
+
+
+
+/* Error start */
+
+.error_container{
+  text-align: center;
+  justify-content: center;
+}
+
+/* Error end */
+
+
+/* Restaurant_menu start */
+
+.restaurant_menu{
+  display: flex;
+  padding:2rem;
+}
+
+.restaurant_img >img{
+  width: 65%;
+}
+
+/* Restaurant_menu ends */
+
+.footer_container{
+  margin-bottom: -100px; 
+
+}

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import restrauntList from "../utils/mockdata";
+// import restrauntList from "../utils/mockdata";
 import Carts from "./Carts";
 import ShimmerUi from "./ShimmerUi";
+import { Link } from "react-router-dom";
 
 function filterSearch(searchText, restrauntData) {
 
@@ -18,8 +19,6 @@ const Body = () => {
   const [filterdRestraunt, setFilterdRestraunt] = useState([]);
   const [searchText, setsearchText] = useState("");
 
-  console.log("render()", restrauntData);
-
   useEffect(() => {
     // Api call
     getAllRestraunts();
@@ -30,16 +29,14 @@ const Body = () => {
     const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&page_type=DESKTOP_WEB_LISTING");
 
     const json = await data.json();
-    console.log(json);
       
     // optional chaning
     setRestrauntData(json?.data?.cards[2]?.data?.data?.cards);
     setFilterdRestraunt(json?.data?.cards[2]?.data?.data?.cards);
-
   }
 
   // not render component (Early return)
-  if(!restrauntData) return null;
+  // if(!restrauntData) return null;
 
   return (restrauntData.length === 0 ) ? <ShimmerUi/> : (
     <div className="app_body">
@@ -48,7 +45,7 @@ const Body = () => {
       
       <div className="searchbar">
         <div className="search_filed">
-          <input
+          <input className="search_bar"
             type="text"
             placeholder="Search..."
             value={searchText}
@@ -79,8 +76,7 @@ const Body = () => {
               const Filter_list = restrauntData.filter(
                 (res) => res.data.avgRating > 4
               );
-              console.log(Filter_list); 
-              setRestrauntData(Filter_list);
+              setFilterdRestraunt(Filter_list);
             }}>
             Top Rated Restaurants
           </button>
@@ -93,6 +89,10 @@ const Body = () => {
         <div className="help">
           <button className="help_button">Help </button>
         </div>
+
+        <div className="clearfilter">
+          <button className="clearfilter_button" onClick={()=>{setFilterdRestraunt(restrauntData);}}>Clear All the Filter</button>
+        </div>
       </div>
       
       {/*top res filter end*/}
@@ -100,8 +100,12 @@ const Body = () => {
       {/* carts start */}
       <div className="cart-container">
         {filterdRestraunt.map((restaurant) => {
-          return <Carts key={restaurant.data.id} resData={restaurant} />;
-        })}
+          return (
+          <Link to={"/restaurant/" + restaurant.data.id}  key={restaurant.data.id}><Carts  resData={restaurant} />
+          </Link>
+          );
+        }
+        )}
       </div>
       {/* cart ends */}
     </div>
