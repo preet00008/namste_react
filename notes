@@ -76,7 +76,18 @@
 
 
 
-<!-- ROUTERS -->
-<!-- this is a function to create react router dom it will help us for routing.
-    import { createBrowserRouter, routerProvider } from "react-router-dom"; -->
-<!-- ROUTERS END -->
+// <!-- ROUTERS -->
+// <!-- this is a function to create react router dom it will help us for routing.
+    // import { createBrowserRouter, routerProvider } from "react-router-dom"; -->
+// <!-- ROUTERS END -->
+
+
+
+// class base Component
+/* In class base component most important part is we need to add render method without render class base component we could not use
+* IN this we will use Constructor
+* sequience of call
+*   Constructor -->  render --> componentDidMount
+*   componentDidMount --> use for api's call because it render once and at the end it will render
+*
+ */

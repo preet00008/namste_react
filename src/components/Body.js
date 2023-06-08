@@ -1,20 +1,12 @@
 import { useEffect, useState } from "react";
-// import restrauntList from "../utils/mockdata";
+import { GET_ALL_RESTAURANT_URL } from "../utils/constant";
 import Carts from "./Carts";
 import ShimmerUi from "./ShimmerUi";
 import { Link } from "react-router-dom";
+import { filterSearch } from "../utils/constant";
 
-function filterSearch(searchText, restrauntData) {
-
-  const filterData = restrauntData.filter((res) =>
-    res?.data?.name?.toLowerCase()?.includes(searchText?.toLowerCase())
-  );
-
-  return filterData;
-}
 
 const Body = () => {
-
   const [restrauntData, setRestrauntData] = useState([]);
   const [filterdRestraunt, setFilterdRestraunt] = useState([]);
   const [searchText, setsearchText] = useState("");
@@ -24,12 +16,11 @@ const Body = () => {
     getAllRestraunts();
   }, []);
 
-
-  async function getAllRestraunts(){
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&page_type=DESKTOP_WEB_LISTING");
+  async function getAllRestraunts() {
+    const data = await fetch(GET_ALL_RESTAURANT_URL);
 
     const json = await data.json();
-      
+
     // optional chaning
     setRestrauntData(json?.data?.cards[2]?.data?.data?.cards);
     setFilterdRestraunt(json?.data?.cards[2]?.data?.data?.cards);
@@ -38,14 +29,18 @@ const Body = () => {
   // not render component (Early return)
   // if(!restrauntData) return null;
 
-  return (restrauntData.length === 0 ) ? <ShimmerUi/> : (
-    <div className="app_body">
+  return restrauntData.length === 0 ? (
+    <ShimmerUi />
+  ) : (
+    <div className="p-3 bg-slate-100">
 
-      {/* search start */}
-      
-      <div className="searchbar">
-        <div className="search_filed">
-          <input className="search_bar"
+
+      <div className="flex py-2 justify-center">
+        
+      <div className="flex px-2">
+        <div className="justify-center">
+          <input
+            className="bg-slate-100 "
             type="text"
             placeholder="Search..."
             value={searchText}
@@ -54,7 +49,7 @@ const Body = () => {
             }}
           />
           <button
-            className="search_button"
+            className="rounded-full	w-24 h-10	 bg-red-600 text-white hover:bg-red-400"
             onClick={() => {
               const data = filterSearch(searchText, restrauntData);
               setFilterdRestraunt(data);
@@ -64,48 +59,54 @@ const Body = () => {
           </button>
         </div>
       </div>
-      
-      {/* search ends */}
-      
-      {/*top res filter start*/}
-
-      <div className="button_container">
-        <div className="filter">
-          <button className="filter_button"
+        <div className="px-2">
+          <button
+            className="rounded-full	p-2 bg-red-600 text-white hover:bg-red-400"
             onClick={() => {
               const Filter_list = restrauntData.filter(
                 (res) => res.data.avgRating > 4
               );
               setFilterdRestraunt(Filter_list);
-            }}>
+            }}
+          >
             Top Rated Restaurants
           </button>
         </div>
 
-        <div className="offers">
-          <button className="offer_button">Offers %</button>
+        <div className="px-2">
+          <button className="rounded-full	p-2 bg-red-600 text-white hover:bg-red-400">Offers %</button>
         </div>
 
-        <div className="help">
-          <button className="help_button">Help </button>
+        <div className="px-2">
+          <button className="rounded-full	p-2 bg-red-600 text-white hover:bg-red-400">Help </button>
         </div>
 
-        <div className="clearfilter">
-          <button className="clearfilter_button" onClick={()=>{setFilterdRestraunt(restrauntData);}}>Clear All the Filter</button>
+        <div className="px-2">
+          <button
+            className="rounded-full	p-2 bg-red-600 text-white hover:bg-red-400"
+            onClick={() => {
+              setFilterdRestraunt(restrauntData);
+            }}
+          >
+            Clear All the Filter
+          </button>
         </div>
       </div>
-      
-      {/*top res filter end*/}
+
 
       {/* carts start */}
-      <div className="cart-container">
+      <div className="flex flex-wrap my-2 mx-2">
         {filterdRestraunt.map((restaurant) => {
           return (
-          <Link to={"/restaurant/" + restaurant.data.id}  key={restaurant.data.id}><Carts  resData={restaurant} />
-          </Link>
+            <Link
+              className=""
+              to={"/restaurant/" + restaurant.data.id}
+              key={restaurant.data.id}
+            >
+              <Carts resData={restaurant} />
+            </Link>
           );
-        }
-        )}
+        })}
       </div>
       {/* cart ends */}
     </div>
