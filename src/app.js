@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -11,13 +11,25 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/ProfileClass";
 import Instamart from "./components/Instamart";
+import UserContext from "./utils/UserContext";
 
 const AppLayout = () => {
+  const [user, setUser] = useState({
+    name: "hp",
+    email: "hp@gmail.com",
+  });
   return (
     <>
-      <Header />
-      <Outlet /> {/* for dynimc change which child want to run */}
-      <Footer />
+      <UserContext.Provider
+        value={{
+          user: user,
+          setUser: setUser,
+        }}
+      >
+        <Header />
+        <Outlet /> {/* for dynimc change which child want to run */}
+        <Footer />
+      </UserContext.Provider>
     </>
   );
 };
@@ -37,7 +49,7 @@ const appRouter = createBrowserRouter([
         element: <About />,
         children: [
           {
-            path: "profile",  // if this case we dont need / this symbol / this is use for after localhost like localhost:1234/profile   -> but we want localhost:1234/about/profile
+            path: "profile", // if this case we dont need / this symbol / this is use for after localhost like localhost:1234/profile   -> but we want localhost:1234/about/profile
             element: <Profile />,
           },
         ],

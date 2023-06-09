@@ -1,8 +1,15 @@
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 const Footer = () => {
+
+  const {user} = useContext(UserContext);
+
+
   return (
-    <footer class="bg-gray-900 text-white p-4 sticky bottom-0">
-      <div class="container mx-auto text-center">
+    <footer className="bg-gray-900 text-white p-4 sticky bottom-0">
+      <div className="container mx-auto text-center">
         <p>&copy; 2023 Your Website. All rights reserved.</p>
+        <h1>{user.name} - {user.email} </h1>
       </div>
     </footer>
   );

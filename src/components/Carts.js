@@ -1,7 +1,11 @@
 import { IMAGE_URL } from "../utils/constant";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 
 const Carts = (props) => {
   const { resData } = props;
+  const {user} = useContext(UserContext);
+
   const {
     name,
     cuisines,
@@ -35,6 +39,8 @@ const Carts = (props) => {
         <p className="px-2"> . </p>
         <p className="">₹{costForTwo / 100} FOR TWO</p>
       </div>
+      <h1>{user.name} - {user.email} </h1>
+      
 
     </div>
 
