@@ -1,13 +1,12 @@
 const Footer = () => {
-
   return (
-    <footer className="">
-      <div className="flex bg-black text-white justify-center fixed bottom-0 h-16 p-4 w-full">
-        <p>&copy; 2023 Example Company. All Rights Reserved.</p>
+    <footer class="bg-gray-900 text-white p-4 sticky bottom-0">
+      <div class="container mx-auto text-center">
+        <p>&copy; 2023 Your Website. All rights reserved.</p>
       </div>
     </footer>
   );
-
 };
+
 
 export default Footer;

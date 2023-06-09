@@ -1,14 +1,14 @@
 import { useState } from "react";
 
 const Section = (props) => {
-  const { title, isVisible, setIsVisible } = props;
+  const { title, isVisible, setIsVisible, sethide } = props;
   return (
     <>
       <div className="border border-white py-8 px-4">
         <h1>{title}</h1>
         {isVisible ? (
           <>
-            <button onClick={() => setIsVisible(false)}>Hide</button>
+            <button onClick={() => sethide(false)}>Hide</button>
             <p>{props.description}</p>
           </>
         ) : (
@@ -31,6 +31,8 @@ const Instamart = () => {
           }
           isVisible={sectionVisible === "about"}
           setIsVisible={() => setSectionVisible("about")}
+          sethide={() => setSectionVisible("")}
+
         />
 
         <Section
@@ -40,6 +42,7 @@ const Instamart = () => {
           }
           isVisible={sectionVisible === "team"}
           setIsVisible={() => setSectionVisible("team")}
+          sethide={() => setSectionVisible("")}
         />
 
         <Section
@@ -49,6 +52,7 @@ const Instamart = () => {
           }
           isVisible={sectionVisible === "details"}
           setIsVisible={() => setSectionVisible("details")}
+          sethide={() => setSectionVisible("")}
         />
 
         <Section
@@ -58,6 +62,8 @@ const Instamart = () => {
           }
           isVisible={sectionVisible === "product"}
           setIsVisible={() => setSectionVisible("product")}
+          sethide={() => setSectionVisible("")}
+
         />
       </div>
     </>
