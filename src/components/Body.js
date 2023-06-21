@@ -1,17 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { GET_ALL_RESTAURANT_URL } from "../utils/constant";
-import Carts from "./Carts";
+import Cards from "./Cards";
 import ShimmerUi from "./ShimmerUi";
 import { Link } from "react-router-dom";
 import { filterSearch } from "../utils/constant";
 import UserContext from "../utils/UserContext";
 
 const Body = () => {
-
   const [restrauntData, setRestrauntData] = useState([]);
   const [filterdRestraunt, setFilterdRestraunt] = useState([]);
   const [searchText, setsearchText] = useState("");
-  const {user, setUser} = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     getAllRestraunts(); //API Call
@@ -44,30 +43,6 @@ const Body = () => {
               value={searchText}
               onChange={(e) => {
                 setsearchText(e.target.value);
-              }}
-            />
-            <input
-              className="bg-slate-100 "
-              type="text"
-              value={user.name}
-              onChange={(e) => {
-                console.log(e);
-                setUser({
-                  ...user,
-                  name : e.target.value,
-                });
-              }}
-            />
-            <input
-              className="bg-slate-100 "
-              type="text"
-              value={user.email}
-              onChange={(e) => {
-                console.log(e);
-                setUser({
-                  ...user,
-                  email : e.target.value,
-                });
               }}
             />
             <button
@@ -119,7 +94,7 @@ const Body = () => {
         </div>
       </div>
 
-      {/* carts start */}
+      {/* Cards start */}
       <div className="flex flex-wrap my-2 mx-2">
         {filterdRestraunt.map((restaurant) => {
           return (
@@ -128,12 +103,12 @@ const Body = () => {
               to={"/restaurant/" + restaurant.data.id}
               key={restaurant.data.id}
             >
-              <Carts resData={restaurant} />
+              <Cards resData={restaurant} />
             </Link>
           );
         })}
       </div>
-      {/* cart ends */}
+      {/* Cards ends */}
     </div>
   );
 };

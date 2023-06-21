@@ -1,51 +1,24 @@
-import { IMAGE_URL } from "../utils/constant";
-import { useContext } from "react";
-import UserContext from "../utils/UserContext";
+import { useDispatch, useSelector } from "react-redux";
+import CartItems from "./CartItems";
+import { removeItems } from "../utils/cartSlice";
 
-const Carts = (props) => {
-  const { resData } = props;
-  const {user} = useContext(UserContext);
-
-  const {
-    name,
-    cuisines,
-    avgRating,
-    maxDeliveryTime,
-    cloudinaryImageId,
-    costForTwo,
-  } = resData?.data;
+const Carts = () => {
+  const cartItems = useSelector((store) => store.cart.items);
+  const dispatch = useDispatch();
+  const clearCart = () =>{
+    dispatch(removeItems());
+  }
 
   return (
-
-    <div className="mx-4 my-4 w-64 h-72 rounded p-2 hover:bg-white border hover:border-white ">
-
-      <div className="">
-        <img
-          className="cart_image"
-          src={IMAGE_URL + cloudinaryImageId}
-          alt="image not found"
-        />
+    <>
+      <button className="rounded-full	w-24 h-10 m-3 bg-red-600 text-white hover:bg-red-400" onClick={()=>clearCart()}>Clear Cart</button>
+      <div className="flex flex-wrap my-2 mx-2">
+        {cartItems.map((cart) => {
+          return <CartItems key={cart?.id} cartData={cart} />;
+        })}
       </div>
-
-      <div className="">
-        <h3 className="font-bold text-base py-1">{name}</h3>
-        <p className="text-xs py-1">{cuisines.join(", ")}</p>
-      </div>
-
-      <div className="flex justify-center text-sm	">
-        <p className="">{avgRating} stars</p> 
-        <p className="px-2"> . </p>
-        <p>{maxDeliveryTime} mins </p> 
-        <p className="px-2"> . </p>
-        <p className="">₹{costForTwo / 100} FOR TWO</p>
-      </div>
-      <h1>{user.name} - {user.email} </h1>
-      
-
-    </div>
-
+    </>
   );
-
 };
 
 export default Carts;

@@ -12,6 +12,9 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/ProfileClass";
 import Instamart from "./components/Instamart";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import store from "./utils/store";
+import Carts from "./components/Carts";
 
 const AppLayout = () => {
   const [user, setUser] = useState({
@@ -19,7 +22,7 @@ const AppLayout = () => {
     email: "hp@gmail.com",
   });
   return (
-    <>
+    <Provider store={store}>
       <UserContext.Provider
         value={{
           user: user,
@@ -30,7 +33,7 @@ const AppLayout = () => {
         <Outlet /> {/* for dynimc change which child want to run */}
         <Footer />
       </UserContext.Provider>
-    </>
+    </Provider>
   );
 };
 
@@ -61,6 +64,9 @@ const appRouter = createBrowserRouter([
       {
         path: "/instamart",
         element: <Instamart />,
+      },{
+        path: "/cart",
+        element: <Carts/>
       },
       {
         path: "/restaurant/:id",
