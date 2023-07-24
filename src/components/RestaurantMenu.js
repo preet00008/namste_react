@@ -44,7 +44,7 @@ const RestaurantMenu = () => {
 
       <div className="bg-slate-100">
         <h1 className=" text-center  text-2xl font-bold">MENU</h1>
-        <ul className="m-2">
+        <ul className="m-2" data-testid="menu">
           {menuDetails.map((item) => {
             return (
               <>
@@ -57,7 +57,7 @@ const RestaurantMenu = () => {
                     <li>
                       <span className=" text-slate-500">{item?.card?.info?.description}</span></li>
 
-                    <button
+                    <button data-testid="menu-btn"
                       className="rounded-full	w-24 h-10 p-2	mt-2 bg-red-600 text-white hover:bg-red-400"
                       onClick={() => addItems(item?.card?.info)}
                     >Add items + 

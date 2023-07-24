@@ -2,15 +2,17 @@ import { useState } from "react";
 import logo from "../assets/img/logo.png";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import useOnline from "../utils/useOnline";
 
 const Logo = () => (
   <a href="/">
-    <img className="h-28 p-2" alt="logo" src={logo} />
+    <img data-testid="logo" className="h-28 p-2" alt="logo" src={logo} />
   </a>
 );
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const isOnline = useOnline();
   
   const cartItems = useSelector((store) => store.cart.items);
 
@@ -27,11 +29,11 @@ const Header = () => {
               </Link>
             </li>
             
-            <li className="px-2 text-red-600	hover:text-red-300">
+            {/* <li className="px-2 text-red-600	hover:text-red-300">
               <Link to="/instamart">
                 Instramart
               </Link>
-            </li>
+            </li> */}
 
             <li className="px-2 text-red-600	hover:text-red-300">
               <Link to="/about">
@@ -47,8 +49,12 @@ const Header = () => {
 
             <li className="px-2 text-red-600	hover:text-red-300">
               <Link to="/cart">
-                <span className=" p-1">Cart</span> {cartItems.length}
+                <span data-testid="cartItem" className="p-1">Cart {cartItems.length}</span> 
               </Link>
+            </li>
+            <li className="px-2 ">
+                <span data-testid="online-status" className="p-1">{
+                isOnline ? "✅" : "🔴" }</span>
             </li>
 
             {isLoggedIn == true ? (

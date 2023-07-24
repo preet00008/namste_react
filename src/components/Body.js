@@ -36,7 +36,7 @@ const Body = () => {
       <div className="flex py-2 justify-center">
         <div className="flex px-2">
           <div className="justify-center">
-            <input
+            <input data-testid="serach-input"
               className="bg-slate-100 "
               type="text"
               placeholder="Search..."
@@ -45,7 +45,7 @@ const Body = () => {
                 setsearchText(e.target.value);
               }}
             />
-            <button
+            <button data-testid="search"
               className="rounded-full	w-24 h-10	 bg-red-600 text-white hover:bg-red-400"
               onClick={() => {
                 const data = filterSearch(searchText, restrauntData);
@@ -95,7 +95,7 @@ const Body = () => {
       </div>
 
       {/* Cards start */}
-      <div className="flex flex-wrap my-2 mx-2">
+      <div data-testid="res-list" className="flex flex-wrap my-2 mx-2">
         {filterdRestraunt.map((restaurant) => {
           return (
             <Link
