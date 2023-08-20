@@ -1,14 +1,16 @@
 import { useContext, useEffect, useState } from "react";
-import { GET_ALL_RESTAURANT_URL } from "../utils/constant";
+import { GET_ALL_RESTAURANT_URL, LINK_URL, URL } from "../utils/constant";
 import Cards from "./Cards";
 import ShimmerUi from "./ShimmerUi";
 import { Link } from "react-router-dom";
 import { filterSearch } from "../utils/constant";
 import UserContext from "../utils/UserContext";
+import Offers from "./Offers";
+import { URLSearchParams } from "url";
 
 const Body = () => {
   const [restrauntData, setRestrauntData] = useState([]);
-  const [filterdRestraunt, setFilterdRestraunt] = useState([]);
+  const [offersRestraunt, setOffersRestraunt] = useState([]);
   const [searchText, setsearchText] = useState("");
   const { user, setUser } = useContext(UserContext);
 
@@ -16,28 +18,33 @@ const Body = () => {
     getAllRestraunts(); //API Call
   }, []);
 
-  async function getAllRestraunts() {
-    const data = await fetch(GET_ALL_RESTAURANT_URL);
+  const generateId = (url) => {
+    url = new window.URL(url).search;
+    const urlParams = new window.URLSearchParams(url);
+    const collectionId = urlParams.get("collection_id");
+    return collectionId;
+  };
 
+  async function getAllRestraunts() {
+    const data = await fetch(GET_ALL_RESTAURANT_URL + "/swiggy");
     const json = await data.json();
+    console.log("body", json?.data.cards[1]?.card?.card?.imageGridCards?.info);
 
     // optional chaning
-    setRestrauntData(json?.data?.cards[2]?.data?.data?.cards);
-    setFilterdRestraunt(json?.data?.cards[2]?.data?.data?.cards);
+    setRestrauntData(json?.data.cards[1]?.card?.card?.imageGridCards?.info);
+    setOffersRestraunt(json?.data.cards[0]?.card?.card?.imageGridCards?.info);
   }
 
   // not render component (Early return)
-  // if(!restrauntData) return null;
+  if (!restrauntData) return <ShimmerUi />;
 
-  return restrauntData.length === 0 ? (
-    <ShimmerUi />
-  ) : (
-    <div className="p-3 bg-slate-100">
+  return (
+    <div className="p-3">
       <div className="flex py-2 justify-center">
         <div className="flex px-2">
           <div className="justify-center">
-            <input data-testid="serach-input"
-              className="bg-slate-100 "
+            <input
+              data-testid="serach-input"
               type="text"
               placeholder="Search..."
               value={searchText}
@@ -45,7 +52,8 @@ const Body = () => {
                 setsearchText(e.target.value);
               }}
             />
-            <button data-testid="search"
+            <button
+              data-testid="search"
               className="rounded-full	w-24 h-10	 bg-red-600 text-white hover:bg-red-400"
               onClick={() => {
                 const data = filterSearch(searchText, restrauntData);
@@ -93,15 +101,29 @@ const Body = () => {
           </button>
         </div>
       </div>
+      {/* offers start */}
+      <h1 className=" text-lg font-semibold m-2 p-2">BEST OFFERS FOR YOU</h1>
+      <div className="flex flex-wrap my-2 mx-2">
+        {offersRestraunt.map((restaurant, index) => {
+          if (index < 3)
+            return (
+              <div key={index}>
+                <Offers resData={restaurant} />
+              </div>
+            );
+        })}
+      </div>
+      {/* offers end */}
 
       {/* Cards start */}
       <div data-testid="res-list" className="flex flex-wrap my-2 mx-2">
-        {filterdRestraunt.map((restaurant) => {
+        {/* {filterdRestraunt.map((restaurant, index) => { */}
+        {restrauntData.map((restaurant, index) => {
           return (
             <Link
               className=""
-              to={"/restaurant/" + restaurant.data.id}
-              key={restaurant.data.id}
+              to={"/collections?id=" + generateId(restaurant?.action?.link)}
+              key={restaurant?.id}
             >
               <Cards resData={restaurant} />
             </Link>

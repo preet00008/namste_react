@@ -7,7 +7,7 @@ class Profile extends Component {
     this.state = {
         details : "",
     }
-    // console.log("constructor");
+    console.log("constructor");
   }
 
   async componentDidMount(){

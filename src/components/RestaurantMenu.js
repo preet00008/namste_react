@@ -4,45 +4,51 @@ import useRestaurantMenu from "../utils/useRestaurantMenu";
 import ShimmerUi from "./ShimmerUi";
 import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
+import { LINK_URL } from "../utils/constant";
+import { useEffect } from "react";
 
 const RestaurantMenu = () => {
-  const resId = useParams();
-  const resData = useRestaurantMenu(resId);
+  var url = new window.URL(LINK_URL);
+  const urlParams = new window.URLSearchParams(window.location.search);
+  const collectionId = urlParams.get("id");
+  url.searchParams.append("collection", collectionId);
+  // console.log(url.href);
+  
+  useEffect(()=>{
+    restautantData();
+  },[]);
 
-  const resDataInfo = resData?.cards[0]?.card?.card?.info;
-
-  const menuDetails =
-    resData?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card.card
-      .itemCards;
-
-  const dispatch = useDispatch();
-
-  const addItems = (item) => {
-    dispatch(addItem(item));
-  };
+  
+  async function restautantData (){
+      console.log(url.href);
+      const data = await fetch(url.href);
+      const json = await data.json();
+      // console.log("body", json)
+    }
+  
 
 
-  if (!resData) return <ShimmerUi />;
+  // if (!resData) return <ShimmerUi />;
 
   return (
     <>
       <div className="bg-slate-100">
         <div className="py-8 flex">
           <div className=" ml-8 rounded">
-            <img src={IMAGE_URL + resDataInfo?.cloudinaryImageId} />
+            {/* <img src={IMAGE_URL + resDataInfo?.cloudinaryImageId} /> */}
           </div>
 
           <div className="pl-4">
-            <h3 className="text-3xl font-semibold py-4">{resDataInfo?.name}</h3>
+            {/* <h3 className="text-3xl font-semibold py-4">{resDataInfo?.name}</h3>
             <p className=" p-2">{resDataInfo?.cuisines}</p>
             <p className=" p-2">{resDataInfo?.costForTwoMessage}</p>
             <p className=" p-2">{resDataInfo?.avgRating} stars</p>
-            <p className=" p-2">{resDataInfo?.city}</p>
+            <p className=" p-2">{resDataInfo?.city}</p> */}
           </div>
         </div>
       </div>
 
-      <div className="bg-slate-100">
+      {/* <div className="bg-slate-100">
         <h1 className=" text-center  text-2xl font-bold">MENU</h1>
         <ul className="m-2" data-testid="menu">
           {menuDetails.map((item) => {
@@ -60,7 +66,7 @@ const RestaurantMenu = () => {
                     <button data-testid="menu-btn"
                       className="rounded-full	w-24 h-10 p-2	mt-2 bg-red-600 text-white hover:bg-red-400"
                       onClick={() => addItems(item?.card?.info)}
-                    >Add items + 
+                    >Add items +
                     </button>
                   </div>
 
@@ -75,7 +81,7 @@ const RestaurantMenu = () => {
             );
           })}
         </ul>
-      </div>
+      </div> */}
     </>
   );
 };

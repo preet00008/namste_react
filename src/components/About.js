@@ -6,18 +6,18 @@ const About = () => {
     <>
       <Outlet />
 
-      <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-        <div class="relative py-3 sm:max-w-xl sm:mx-auto">
-          <div class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
-            <div class="max-w-md mx-auto">
-              <div class="text-center">
-                <h2 class="text-3xl font-semibold text-gray-800">About Us</h2>
-                <p class="mt-2 text-sm text-gray-500">
+      <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+        <div className="relative py-3 sm:max-w-xl sm:mx-auto">
+          <div className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
+            <div className="max-w-md mx-auto">
+              <div className="text-center">
+                <h2 className="text-3xl font-semibold text-gray-800">About Us</h2>
+                <p className="mt-2 text-sm text-gray-500">
                   Learn more about our company
                 </p>
               </div>
-              <div class="mt-4">
-                <p class="text-base text-gray-700">
+              <div className="mt-4">
+                <p className="text-base text-gray-700">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                   eu est quis mauris tincidunt consequat ac ut nisi. Phasellus
                   eu eleifend metus. Morbi at scelerisque lorem, in placerat
@@ -28,7 +28,7 @@ const About = () => {
                   nulla id quam fermentum malesuada id sed ligula. Aenean vel
                   dui a arcu consequat auctor. Mauris vel pharetra ipsum.
                 </p>
-                <p class="mt-4 text-base text-gray-700">
+                <p className="mt-4 text-base text-gray-700">
                   Integer et lacinia sapien. Duis sollicitudin risus et felis
                   cursus, nec lacinia ex tincidunt. Vestibulum elementum arcu
                   justo, ac lacinia dui molestie sed. In eu fringilla dui.
